@@ -17,6 +17,7 @@ HLaaS comprises several repositories, each catering to specific aspects of the s
 
 ## Getting Started
 
+
 ## Directory Tree Structure
 ```
 hlaas-platform/
