@@ -1,0 +1,33 @@
+<NetworkConfiguration>
+    <InternetProvider IP="x.x.x.13" Model="Generic Internet Provider" Owner="ISP"/>
+
+    <Router IP="192.168.1.254" Model="ATT Router 5268AC" Owner="Dan"/>
+    <Router IP="192.168.0.1" Model="Archer A21X" Owner="David"/>
+    <Router IP="192.168.2.1" Model="Netgear AC1750" Owner="David" VLAN="20"/>
+    <Router IP="10.0.0.1" Model="Orbi RBR10" Owner="Trevor"/>
+
+    <Switch IP="Managed by ATT Router" Model="Netgear GS308E" Owner="David"/>
+
+    <Firewall LAN="192.168.10.0" P2P="Tailscale" Owner="David">
+        <VLAN>10</VLAN>
+        <VLAN>20</VLAN>
+        <VLAN>30</VLAN>
+    </Firewall>
+
+    <!-- Adding Proxmox, Rpi Cluster, NAS, and other devices as generic NetworkDevices for simplicity -->
+    <NetworkDeviceType IP="Specific IP" Model="Proxmox Server" Owner="David"/>
+    <NetworkDeviceType IP="Cluster IP" Model="Rpi Kubernetes Cluster" Owner="David"/>
+    <NetworkDeviceType IP="NAS IP" Model="Synology NAS" Owner="David"/>
+    <NetworkDeviceType IP="Desktop IP" Model="Windows Desktop" Owner="David"/>
+    <NetworkDeviceType IP="Laptop IP" Model="MacBook Pro" Owner="David"/>
+
+    <!-- Cloud servers and domains represented as generic devices for simplicity -->
+    <NetworkDeviceType Model="Cloud Server KaliLinux" Owner="Linode & DigitalOcean"/>
+    <NetworkDeviceType Model="Cloud Server WordPress" Owner="To be Decommissioned"/>
+    <NetworkDeviceType Model="Ubuntu - Cdaprod.dev" Owner="Cloud"/>
+    <NetworkDeviceType URL="Sanity.Cdaprod.dev" Model="Vercel Domain"/>
+    <NetworkDeviceType URL="Skeleton.Cdaprod.dev" Model="Vercel Domain"/>
+
+    <!-- GitHub repositories and runner agents -->
+    <!-- This section would need custom elements or attributes based on your schema definition -->
+</NetworkConfiguration>

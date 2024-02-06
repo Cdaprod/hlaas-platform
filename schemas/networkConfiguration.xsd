@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Definition of simple types for reusability -->
+    <xsd:simpleType name="IPType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="ModelType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="OwnerType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="VLANType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+
+    <!-- Network Device Base Type -->
+    <xsd:complexType name="NetworkDeviceType">
+        <xsd:sequence>
+            <xsd:element name="IP" type="IPType" minOccurs="0"/>
+            <xsd:element name="Model" type="ModelType" minOccurs="0"/>
+            <xsd:element name="Owner" type="OwnerType" minOccurs="0"/>
+            <xsd:element name="VLAN" type="VLANType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Specific Device Types -->
+    <xsd:complexType name="RouterType">
+        <xsd:complexContent>
+            <xsd:extension base="NetworkDeviceType">
+                <!-- Additional elements specific to routers could be added here -->
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="SwitchType">
+        <xsd:complexContent>
+            <xsd:extension base="NetworkDeviceType">
+                <!-- Additional elements specific to switches could be added here -->
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="FirewallType">
+        <xsd:complexContent>
+            <xsd:extension base="NetworkDeviceType">
+                <xsd:sequence>
+                    <xsd:element name="LAN" type="IPType"/>
+                    <xsd:element name="P2P" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- Network Configuration -->
+    <xsd:complexType name="NetworkConfigurationType">
+        <xsd:sequence>
+            <xsd:element name="InternetProvider" type="NetworkDeviceType"/>
+            <xsd:element name="Router" type="RouterType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Switch" type="SwitchType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Firewall" type="FirewallType"/>
+            <!-- Additional network components could be added here -->
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <!-- Root Element -->
+    <xsd:element name="NetworkConfiguration" type="NetworkConfigurationType"/>
+    
+</xsd:schema>
