@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from langchain
 from .api.v1_endpoints import router as v1_router
 from .api.routers import item_router
 from .core.config import settings
